@@ -1,14 +1,15 @@
 
 HEADERS = {
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiZGZkMDQ4ODE4ODMzYzkzYzBiNmZmZDEyOGNlZmEwZjg0NDJjY' \
-                     'TE4Nzk1OGY3Zjc4ZDA1MzI5NTc3NDk0MmViMGVmYzFmZDA2Njk3YWI0NDIiLCJpYXQiOjE2MDc0MTk1OTEsIm5iZiI6MTYwNzQxOTU5MSwiZXh' \
-                     'wIjoxNjM4OTU1NTkxLCJzdWIiOiI4Iiwic2NvcGVzIjpbXX0.NBrfEKf5DCPxPs_ybsXe0UVpqNGlByTmbUUEPC4Gei-Sf47LPqPIH_2hF88au' \
-                     'lJaITaBURu5RXbq2-nIAxem04-pWpVjdApfshwSuCsg3BBE3zgEDFnjm_BnEKSxbpxDcYKfNuvvABZWQbkxs_T00xZna5gobPUuJqDQxg3TSa0z' \
-                     'azzSNb_T1OHzG062Yj99OM3EYHReqQuXmyt3HQ6_MOFpjk_052QOXqqdIu4-OKwkF0QXInfqx1rD-gek9x048clfbFAZkUQtuLK_ftDBG4Kbt' \
-                     'ngBRXMsEZ0sFPRmOfI0bSI1AMRahM5Rp5Tj7nVclCXcQOWWxD7k2POn8FePqO7IYPWKqBRkI7jew2GPdn_UL-cqYUCt-gm3-Y4GicLZliBLdZV' \
-                     '2msm6ETSLmjK6mSNP11WGZFc0uz0Fz4ykxdPMlT8DpHm0fkmCgqgTYaxsUpgoJ6xg3QUE8q_49iQ-VbjdJVk0JgqGR5q0lQxzkqlDhqWWlaLo' \
-                     'fT6mknlNj4aFdM8jOv4M9nvGwsA4lIpfVdbvQM9k7oQWpLvpdtp9lUmn33etFL_03Uz91J3PCAFnlKhQ4-XU3j8TdR7FspPWdABHexlDpL5GTc' \
-                     'gIY9JB5-sD7WT1m3oDWNfZY0_5OjoMob7r2pGv7k0PzYZ992p9q7ZfBFip1Bohh4kHGRuwSYU'}
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiZGFkZDY3YTg5MmJlMWVlYmJjZjRh'
+                     'NWY0MmJmMWU4OWIwNjJjZDVlZThlNzkyMWRhZDgxZDI0NDY0NmZiZjY0NWQxMWQ0ZWY3NjFiNzJlMGEiLCJpYXQiOjE2MDg1N'
+                     'jM2OTgsIm5iZiI6MTYwODU2MzY5OCwiZXhwIjoxNjQwMDk5Njk4LCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.FvQjIrqivXHVLj'
+                     'n-tck_CJdMfnNdoc_Ku_ZeJCqUQw36sQWmK9u--AOG46V3EkLQUi4XQDrxW9NB8xLRNsle8e3b7c9E_rXN_0Qfafr-EFexw2'
+                     '8WVOVOpUl_EWJ6VnjxO776H_mSV2khgpovgou3kVg2u6NRU9PdErnE7x9Yfkn5H1mGa5p767N6KxOi2wKvqDKAM9Dsv0pLpP6'
+                     'QgSo5Lpybg5LxjwbhR-jKZNCORD2LZ4Pk88QzgwFFQXCD-n0wJZrISluqf6q9Ox0-3hWssIixhiwduW4gc5shAdNkN66uefXS'
+                     'q-JErEDOcacQuiG8PZg6LfUSv40SmiB8uHT5qox0qLHEJwgn-Guzw5BjBt7s4ULLMWs1QMyCS5cs2XSo4udFUGfLS7IRWYo6A'
+                     '49lf3A15q5Mv1pSzuTozynFLav-65pfHCL_zXWVkm1fctUEB3Dd2fo5KAnxsnTcg1KEppjjDjPUIXPN_Qk8ohS5BKiC0aO'
+                     '3tN7GbKOmbxhaT4UVjgtOWxoljmUHA7KSOeWFwlrS1RUhiPFSvsSUDc6-Nh4KR-5f-SfvoXF7SV4DkoTsfS8_qP6NDGWctkxy'
+                     'Jv-vHujhIuuP_HMwUGvvcSoAGiKIQntIphR-GRgIP-S5EAlGBMJNbIZI5JVLGUMVg_ww_Dwxj9n7JavUdUKgoZmwZCQ'}
 
 endpoint_get_categories = 'http://api.platform.masterservice.company/api/v1/categories'
 endpoint_get_categories_info = 'http://api.platform.masterservice.company/api/v1/category/'

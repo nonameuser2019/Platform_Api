@@ -56,7 +56,7 @@ def test_check_guid_category(cursor):
     cursor.execute(sql_get_categories_guid)
     data = cursor.fetchall()
     payload = {
-        'guid': data[random.randint(0, len(data) - 1)]['guid']
+        'guid': data[random.randint(0, len(data) - 1)]['category_guid']
     }
     response = requests.request('GET', endpoint_get_categories_info, headers=HEADERS, params=payload)
     result = json.loads(response.text)['data']

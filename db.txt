@@ -1,5 +1,5 @@
-{"DB_HOST": "api.platform.masterservice.company",
-"DB_PORT": 33064,
-"DB_DATABASE": "steering_db",
-"DB_USERNAME": "root",
-"DB_PASSWORD": "fggrdffdf12@323"}
+{"DB_HOST": "platform.masterservice.company",
+"DB_PORT": 33666,
+"DB_DATABASE": "platform_shop",
+"DB_USERNAME": "platform_user",
+"DB_PASSWORD": "frQP0SYQ"}
