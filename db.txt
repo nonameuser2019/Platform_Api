@@ -1,4 +1,4 @@
-{"DB_HOST": "platform.masterservice.company",
+{"DB_HOST": "api.platform.masterservice.company",
 "DB_PORT": 33064,
 "DB_DATABASE": "steering_db",
 "DB_USERNAME": "root",

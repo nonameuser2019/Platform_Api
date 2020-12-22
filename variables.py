@@ -10,7 +10,7 @@ HEADERS = {
                      'fT6mknlNj4aFdM8jOv4M9nvGwsA4lIpfVdbvQM9k7oQWpLvpdtp9lUmn33etFL_03Uz91J3PCAFnlKhQ4-XU3j8TdR7FspPWdABHexlDpL5GTc' \
                      'gIY9JB5-sD7WT1m3oDWNfZY0_5OjoMob7r2pGv7k0PzYZ992p9q7ZfBFip1Bohh4kHGRuwSYU'}
 
-endpoint_get_categories = 'http://platform.masterservice.company:81/api/v1/categories'
-endpoint_get_categories_info = 'http://platform.masterservice.company:81/api/v1/category/'
-endpoint_get_subcategories = 'http://platform.masterservice.company:81/api/v1/category/sub'
+endpoint_get_categories = 'http://api.platform.masterservice.company/api/v1/categories'
+endpoint_get_categories_info = 'http://api.platform.masterservice.company/api/v1/category/'
+endpoint_get_subcategories = 'http://api.platform.masterservice.company/api/v1/category/sub'
 

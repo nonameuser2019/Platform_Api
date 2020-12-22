@@ -12,3 +12,5 @@ def count_categories(result):
                         if key['id']:
                             list_id.append(key['id'])
     return len(set(list_id))
+
+
