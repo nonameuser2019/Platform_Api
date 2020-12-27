@@ -12,6 +12,6 @@ HEADERS = {
                      'Jv-vHujhIuuP_HMwUGvvcSoAGiKIQntIphR-GRgIP-S5EAlGBMJNbIZI5JVLGUMVg_ww_Dwxj9n7JavUdUKgoZmwZCQ'}
 
 endpoint_get_categories = 'http://api.platform.masterservice.company/api/v1/categories'
-endpoint_get_categories_info = 'http://api.platform.masterservice.company/api/v1/category/'
+endpoint_get_categories_info = 'http://api.platform.masterservice.company/api/v1/category'
 endpoint_get_subcategories = 'http://api.platform.masterservice.company/api/v1/category/sub'
 
