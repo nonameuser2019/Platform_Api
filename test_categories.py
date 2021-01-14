@@ -10,35 +10,30 @@ import random
 
 # тесты для Categories -> GetCategories
 @pytest.mark.base
-def test_check_status_code():
-    # сервер отвечает 200 при корректном запросе(с токеном)
-    response = requests.request('GET', endpoint_get_categories, headers=HEADERS)
-    assert response.status_code == 200, f'Ответ от сервера {response.status_code}'
+def test_check_status_code_with_right_token_get_categories():
+    obj = BaseCheck(endpoint_get_categories)
+    obj.status_code()
 
 
 @pytest.mark.base
-def test_check_response_type():
+def test_check_response_type_get_categories():
     # сервер возвращает ответ json
-    response = requests.request('GET', endpoint_get_categories, headers=HEADERS)
-    assert response.status_code == 200, f'Ответ от сервера не равен 200: {response.status_code}'
-    assert type(response.json()) == dict, 'Сервер вернул ответ не Json'
+    obj = BaseCheck(endpoint_get_categories)
+    obj.response_type()
 
 
 @pytest.mark.base
 def test_check_nonToken():
     # сервер отвечает 4хх при попытке запроса без токена
-    response = requests.request('GET', endpoint_get_categories)
-    assert response.status_code != 200, f'Ожидаемый ответ сервера 4хх. Ответ сервера: {response.status_code}'
+    obj = BaseCheck(endpoint_get_categories)
+    obj.not_token()
 
 
 @pytest.mark.base
 def test_check_timedelta():
     # время выполнения запроса
-    response = requests.request('GET', endpoint_get_categories, headers=HEADERS)
-    assert response.status_code == 200, f'Ответ от сервера не равен 200: {response.status_code}'
-    assert int(
-        response.elapsed.microseconds / 1000) <= 1000, f"Ожидаемое время ответа не более 1000мс, фактическое время " \
-                                                       f"{int(response.elapsed.microseconds / 1000)}"
+    obj = BaseCheck(endpoint_get_categories)
+    obj.time_delta()
 
 
 # These test checks API-> Get Category Info & Subcategories By GUID
@@ -51,8 +46,8 @@ def test_check_status_code_get_category_info(cursor):
     payload = {
         'guid': data[0]['category_guid']
     }
-    response = requests.request('GET', endpoint_get_categories_info, headers=HEADERS, params=payload)
-    assert response.status_code == 200, f'Не верынй ответ сервера, ответ от сервера {response.status_code}'
+    obj = BaseCheck(endpoint_get_subcategories, payload)
+    obj.status_code()
 
 
 @pytest.mark.base
@@ -64,8 +59,8 @@ def test_check_get_category_info_with_wrong_guid(cursor):
     payload = {
         'guid': data[0]['category_guid'] + '-sdfertd'
     }
-    response = requests.request('GET', endpoint_get_categories_info, headers=HEADERS, params=payload)
-    assert response.status_code != 200, f'Не верынй ответ сервера, ответ от сервера {response.status_code}'
+    obj = BaseCheck(endpoint_get_subcategories, payload)
+    obj.status_code()
 
 
 @pytest.mark.base
@@ -77,18 +72,16 @@ def test_check_get_category_info_with_wrong_token(cursor):
     payload = {
         'guid': data[0]['category_guid']
     }
-    WRONG_HEADERS = {}
-    WRONG_HEADERS['Authorization'] = 'asddgdsddgsdgdsgsddgegmdgvioboiobshheiobjsoidbhushvuseghuihvuigseuy'
-    response = requests.request('GET', endpoint_get_categories_info, headers=WRONG_HEADERS, params=payload)
-    assert response.status_code != 200, f'Не верынй ответ сервера, ответ от сервера {response.status_code}'
+    obj = BaseCheck(endpoint_get_subcategories, payload)
+    obj.wrong_token()
 
 
 @pytest.mark.base
 def test_check_status_code_get_category_info_without_guid():
     # проверка статуса при запросе без guid
     # guid обязательный параметр
-    response = requests.request('GET', endpoint_get_categories_info, headers=HEADERS)
-    assert response.status_code != 200, f'Не верынй ответ сервера, ответ от сервера {response.status_code}'
+    obj = BaseCheck(endpoint_get_subcategories)
+    obj.not_params()
 
 
 @pytest.mark.base
@@ -100,14 +93,14 @@ def test_check_status_code_get_category_info_without_token(cursor):
     payload = {
         'guid': data[0]['category_guid']
     }
-    response = requests.request('GET', endpoint_get_categories_info, params=payload)
-    assert response.status_code != 200, f'Не верынй ответ сервера, ответ от сервера {response.status_code}'
+    obj = BaseCheck(endpoint_get_subcategories, payload)
+    obj.not_token()
 
 
 @pytest.mark.base
 def test_check_status_code_get_categories_info_without_token_and_guid():
-    response = requests.request('GET', endpoint_get_categories_info)
-    assert response.status_code != 200, f'Не верынй ответ сервера, ответ от сервера {response.status_code}'
+    obj = BaseCheck(endpoint_get_subcategories, payload)
+    obj.not_params_and_token()
 
 
 @pytest.mark.base
@@ -118,41 +111,39 @@ def test_check_timedelta_get_category_info(cursor):
     payload = {
         'guid': data[0]['category_guid']
     }
-    response = requests.request('GET', endpoint_get_categories_info, headers=HEADERS, params=payload)
-    assert response.status_code == 200, f'Не верынй ответ сервера, ответ от сервера {response.status_code}'
-    assert int(
-        response.elapsed.microseconds / 1000) <= 500, f"Ожидаемое время ответа не более 1000мс, фактическое время " \
-                                                      f"{int(response.elapsed.microseconds / 1000)}"
+    obj = BaseCheck(endpoint_get_subcategories, payload)
+    obj.time_delta()
 
 
 # These test checks API-> Get Subcategories by URL
 
 @pytest.mark.base
 def test_check_status_code_get_subcategory_by_url():
-    obj = BaseCheck(endpoint_get_subcategories)
+    obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.status_code()
 
 
 @pytest.mark.base
 def test_check_response_message_of_get_subcat_by_url():
-    obj = BaseCheck(endpoint_get_subcategories)
+    obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.response_message()
 
 
 @pytest.mark.base
 def test_check_timedelta_get_subcat_by_url():
-    obj = BaseCheck(endpoint_get_subcategories)
+    obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.time_delta()
+
 
 @pytest.mark.base
 def test_check_not_token_get_subcat_by_url():
-    obj = BaseCheck(endpoint_get_subcategories)
+    obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.not_token()
 
 
 @pytest.mark.base
 def test_check_not_params_get_subcat_by_url():
-    obj = BaseCheck(endpoint_get_subcategories)
+    obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.not_params()
 
 
@@ -164,7 +155,7 @@ def test_check_not_params_and_token_get_subcat_by_url():
 
 @pytest.mark.base
 def test_check_wrong_token_get_subcat_by_url():
-    obj = BaseCheck(endpoint_get_subcategories)
+    obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.wrong_token()
 
 
@@ -175,13 +166,10 @@ def test_check_wrong_params_get_subcat_by_url():
 
 
 @pytest.mark.base
+@pytest.mark.xfail
 def test_check_response_message_with_wrong_params_get_subcat_by_url():
     obj = BaseCheck(endpoint_get_subcategories)
-    obj.response_message_with_wrong_marams()
-
-
-
-
+    obj.response_message_with_wrong_params()
 
 # def test_check_count_get_categories(cursor):
 #     # проверяет что api вернет такое же кол. категорий как в БД.
