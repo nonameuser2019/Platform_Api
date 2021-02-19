@@ -27,6 +27,7 @@ def cursor():
             yield cursor
             print('\nSuccessful connection to database')
     finally:
+        connection.commit()
         connection.close()
         print('\nClosed db connect')
 

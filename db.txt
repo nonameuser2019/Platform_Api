@@ -1,5 +1,5 @@
 {"DB_HOST": "platform.masterservice.company",
 "DB_PORT": 33666,
-"DB_DATABASE": "platform_shop",
+"DB_DATABASE": "platform_api_db",
 "DB_USERNAME": "platform_user",
 "DB_PASSWORD": "frQP0SYQ"}

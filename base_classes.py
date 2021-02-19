@@ -1,17 +1,19 @@
 import requests
 from variables import *
 import json
-
+from sql_query import *
 
 class BaseCheck():
-    HEADERS = HEADERS
 
     def __init__(self, endpoint, payload=None):
         self.endpoint = endpoint
         self.payload = payload
 
-    def status_code(self):
-        response = requests.request('GET', self.endpoint, headers=HEADERS, params=self.payload)
+    def status_code(self, method='GET'):
+        if method == 'POST':
+            response = requests.request(method, self.endpoint, headers=HEADERS, data=json.dumps(self.payload))
+        else:
+            response = requests.request(method, self.endpoint, headers=HEADERS, params=self.payload)
         assert response.status_code == 200, f'Ответ от сервера {response.status_code}'
 
     def response_type(self):
@@ -60,3 +62,30 @@ class BaseCheck():
         response_message = json.loads(response.text)['success']
         assert response.status_code == 200, f'Ответ от сервера {response.status_code}'
         assert response_message, f'Сообщение о статусе запроса API не True, Полученное сообщение: {response_message}'
+
+    def positive_registeration(self):
+        response = requests.post(self.endpoint, headers=HEADERS, data=json.dumps(self.payload))
+        assert response.json()['message'] == 'Registered successfully.', f'Registration is not successful ' \
+                                                                         f'{response.json()["message"]}'
+
+    def registration_without_wrong_name(self, result, cursor):
+        response = requests.post(self.endpoint, headers=HEADERS, data=json.dumps(self.payload))
+        cursor.execute(sql_delete_new_user, (self.payload['data']['login'],))
+        assert response.json()['success'] == result, f'Registration impossible with name: {self.payload["data"]["name"]}' \
+                                                     f' Response: {response.json()["success"]}'
+
+    def registration_with_wrong_login(self, result, cursor):
+        response = requests.post(self.endpoint, headers=HEADERS, data=json.dumps(self.payload))
+        if response.status_code == 200:
+            print('The database entry deleted')
+            cursor.execute(sql_delete_new_user, (self.payload['data']['name'],))
+        assert response.json()['success'] == result, f'Registration impossible with password: ' \
+                                                     f'{self.payload["data"]["login"]} Response: {response.json()["success"]}'
+
+    def registration_with_wrong_password(self, result, cursor):
+        response = requests.post(self.endpoint, headers=HEADERS, data=json.dumps(self.payload))
+        if response.status_code == 200:
+            print('The database entry deleted')
+            cursor.execute(sql_delete_new_user, (self.payload['data']['name'],))
+        assert response.json()['success'] == result, f'Registration impossible with password: ' \
+                                                     f'{self.payload["data"]["password"]} Response: {response.json()["success"]}'
