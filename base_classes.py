@@ -89,3 +89,7 @@ class BaseCheck():
             cursor.execute(sql_delete_new_user, (self.payload['data']['name'],))
         assert response.json()['success'] == result, f'Registration impossible with password: ' \
                                                      f'{self.payload["data"]["password"]} Response: {response.json()["success"]}'
+
+    def login_with_correct_data(self, result):
+        response = requests.post(self.endpoint, headers=HEADERS, data=json.dumps(self.payload))
+        assert response.json()['success'] == result, f'Registration is not success. Response code: {response.status_code}'
