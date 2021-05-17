@@ -44,7 +44,7 @@ def test_check_status_code_get_category_info(cursor):
     cursor.execute(sql_get_categories_guid)
     data = cursor.fetchall()
     payload = {
-        'guid': data[0]['category_guid']
+        'guid': data[0]['guid']
     }
     obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.status_code()
@@ -57,7 +57,7 @@ def test_check_get_category_info_with_wrong_guid(cursor):
     cursor.execute(sql_get_categories_guid)
     data = cursor.fetchall()
     payload = {
-        'guid': data[0]['category_guid'] + '-sdfertd'
+        'guid': data[0]['guid'] + '-sdfertd'
     }
     obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.status_code()
@@ -70,7 +70,7 @@ def test_check_get_category_info_with_wrong_token(cursor):
     cursor.execute(sql_get_categories_guid)
     data = cursor.fetchall()
     payload = {
-        'guid': data[0]['category_guid']
+        'guid': data[0]['guid']
     }
     obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.wrong_token()
@@ -91,7 +91,7 @@ def test_check_status_code_get_category_info_without_token(cursor):
     cursor.execute(sql_get_categories_guid)
     data = cursor.fetchall()
     payload = {
-        'guid': data[0]['category_guid']
+        'guid': data[0]['guid']
     }
     obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.not_token()
@@ -109,7 +109,7 @@ def test_check_timedelta_get_category_info(cursor):
     cursor.execute(sql_get_categories_guid)
     data = cursor.fetchall()
     payload = {
-        'guid': data[0]['category_guid']
+        'guid': data[0]['guid']
     }
     obj = BaseCheck(endpoint_get_subcategories, payload)
     obj.time_delta()
@@ -171,33 +171,3 @@ def test_check_response_message_with_wrong_params_get_subcat_by_url():
     obj = BaseCheck(endpoint_get_subcategories)
     obj.response_message_with_wrong_params()
 
-# def test_check_count_get_categories(cursor):
-#     # проверяет что api вернет такое же кол. категорий как в БД.
-#     cursor.execute(sql_qet_all_categories)
-#     data = cursor.fetchall()
-#     response = requests.request('GET', endpoint_get_categories, headers=HEADERS)
-#     result = json.loads(response.text)['data']
-#     assert data[0]['cnt'] == count_categories(result), 'Не верное количество категорий'
-
-
-# Тесты для Categories -> Get Category Info and SubCategories by guid
-# def test_check_guid_category(cursor):
-#     # проверка что api возвращает верный guid
-#     cursor.execute(sql_get_categories_guid)
-#     data = cursor.fetchall()
-#     payload = {
-#         'guid': data[random.randint(0, len(data) - 1)]['category_guid']
-#     }
-#     response = requests.request('GET', endpoint_get_categories_info, headers=HEADERS, params=payload)
-#     result = json.loads(response.text)['data']
-#     assert result['category']['guid'] == payload['guid'], f'Не верный guid'
-
-# def test_check_name_category(cursor):
-#     cursor.execute(sql_get_categories_guid)
-#     data = cursor.fetchall()
-#     payload = {
-#         'guid': data[random.randint(0, len(data) - 1)]['guid']
-#     }
-#     response = requests.request('GET', endpoint_get_categories_info, headers=HEADERS, params=payload)
-#     result = json.loads(response.text)['data']
-#     assert result['category']['guid'] == , f'Не верное название категории'
