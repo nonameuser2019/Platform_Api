@@ -44,7 +44,6 @@ def test_reg_with_different_login(login, result, cursor):
     obj.registration_with_wrong_login(result, cursor)
 
 
-@pytest.mark.t
 @pytest.mark.parametrize('password, result', pass_list)
 def test_reg_with_different_password(password, result, cursor):
     payload = {
@@ -56,3 +55,16 @@ def test_reg_with_different_password(password, result, cursor):
     }
     obj = BaseCheck(endpoint_registration, payload=payload)
     obj.registration_with_wrong_password(result, cursor)
+
+
+@pytest.mark.parametrize('login, password, result', auth_list)
+@pytest.mark.t
+def test_login_with_correct_data(login, password, result):
+    payload = {
+        "data": {
+            "login": login,
+            "password": password
+        }
+    }
+    obj = BaseCheck(endpoint_login, payload=payload)
+    obj.login_with_correct_data(result)
